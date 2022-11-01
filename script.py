@@ -72,7 +72,7 @@ if __name__ == "__main__":
             with open(file.path, "rb") as f:
                 try:
                     image = Image.open(f)
-                    images.append(format_image(image, 64))
+                    images.append(format_image(image, 512))
                 except:
                     pass
         

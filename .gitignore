@@ -11,7 +11,7 @@ dist/
 job-*
 bacalhau*.txt
 *.pkl
-results.csv
+results*.csv
 
 # Compiled Java class files
 *.class

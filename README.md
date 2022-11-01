@@ -17,4 +17,11 @@ Currently there's a `good_uris.pkl` containing a list of ipfs uris from vitalik.
 The `generate_volume_args` script/function can be used to generate a string with multiple `-v IPFS_CID:filename` arguments that can be added to the bacalhau job. This function also uses the public ipfs gateway to get file cids when the URI found on chain or in metadata is of the form `DIRECTORY_CID/filename`. This allows the individual file to be mounted to the job instead of the whole ipfs directory (slow)
 
 This script can be used directly when triggering the bacalhau job like
-`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmXu3m46mTfMw6dbe4AZngHpm6bvHkCjj5WZ8cehc2qi2j:/script.py jonahyakoa/bacalhau-demo -- python /script.py parse_metadata`
+
+## Parse Metadata
+
+`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmSQyz3bNfF1CjAFSwoYA9BQGXzmyWst27nETZCX32B1bS:/script.py jonahyakoa/bacalhau-demo -- python /script.py parse_metadata`
+
+## Create Collage
+
+`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmSQyz3bNfF1CjAFSwoYA9BQGXzmyWst27nETZCX32B1bS:/script.py jonahyakoa/bacalhau-demo -- python /script.py create_collage`
