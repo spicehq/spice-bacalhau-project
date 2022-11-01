@@ -6,6 +6,12 @@
 # Node artifact files
 node_modules/
 dist/
+.env
+
+job-*
+bacalhau*.txt
+*.pkl
+results.csv
 
 # Compiled Java class files
 *.class

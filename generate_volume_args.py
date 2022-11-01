@@ -1,21 +1,18 @@
 import pickle
-import requests
-
+import sys
+import subprocess
 
 def get_cid(path):
     if "/" in path:
-        cid, name = tuple(path.split("/"))
-        dag = requests.get(f"https://ipfs.io/api/v0/dag/get?arg={cid}").json()
-        cid = [link["Hash"]["/"] for link in dag["Links"] if link["Name"] == name]
-        if cid:
-            return cid[0]
-        raise RuntimeError()
+        print(f"resolving the CID {path}", file=sys.stderr)
+        cid = subprocess.check_output(['ipfs', 'resolve', path]).decode().splitlines()[0][6:]
+        return cid
 
     return path
 
-
 def generate_volume_args(uris):
     volumes = []
+    cidMap = {}
     for i, uri in enumerate(uris):
         if not uri.startswith("ipfs://"):
             continue
@@ -23,6 +20,10 @@ def generate_volume_args(uris):
         path = uri.replace("ipfs://", "")
         try:
             cid = get_cid(path)
+            if cid in cidMap:
+                print(f"skipping duplicate CID: {cid}", file=sys.stderr)
+                continue
+            cidMap[cid] = True
             volumes.append(f"-v {cid}:/inputs/{i}")
         except:
             pass

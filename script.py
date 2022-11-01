@@ -58,6 +58,8 @@ if __name__ == "__main__":
     if args.operation == "parse_metadata":
         image_uris = []
         for file in os.scandir(args.input_dir):
+            if file.is_dir():
+                continue
             with open(file.path, "r") as f:
                 image_uris.append(extract_image_uri(json.load(f)))
         
@@ -68,8 +70,11 @@ if __name__ == "__main__":
         images = []
         for file in os.scandir(args.input_dir):
             with open(file.path, "rb") as f:
-                image = Image.open(f)
-                images.append(format_image(image, 64))
+                try:
+                    image = Image.open(f)
+                    images.append(format_image(image, 64))
+                except:
+                    pass
         
         collage = make_collage(images, 4)
         collage.save(f"{args.output_dir}/collage.jpg")
