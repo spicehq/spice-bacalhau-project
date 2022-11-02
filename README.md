@@ -20,8 +20,8 @@ This script can be used directly when triggering the bacalhau job like
 
 ## Parse Metadata
 
-`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmSQyz3bNfF1CjAFSwoYA9BQGXzmyWst27nETZCX32B1bS:/script.py jonahyakoa/bacalhau-demo -- python /script.py parse_metadata`
+`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmWNd38rXz9W87oK8hi1p7CcbTZauJ6h6sd4jipZj6wjQy:/script.py jonahyakoa/bacalhau-demo -- python /script.py parse_metadata`
 
 ## Create Collage
 
-`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmSQyz3bNfF1CjAFSwoYA9BQGXzmyWst27nETZCX32B1bS:/script.py jonahyakoa/bacalhau-demo -- python /script.py create_collage`
+`bacalhau docker run $(cat ./bacalhau_vol_args.txt) -v QmWNd38rXz9W87oK8hi1p7CcbTZauJ6h6sd4jipZj6wjQy:/script.py jonahyakoa/bacalhau-demo -- python /script.py create_collage`
