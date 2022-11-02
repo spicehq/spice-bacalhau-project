@@ -20,9 +20,11 @@ def get_uris(csv_file):
         nft_owners_reader = csv.reader(f)
         next(nft_owners_reader) # remove the headers
         for p in nft_owners_reader:
-            token_contract = w3.eth.contract(Web3.toChecksumAddress(p[0].lower()), abi=erc721_abi)
+            token_address = Web3.toChecksumAddress(p[0].lower())
+            token_id = int(p[1])
+            token_contract = w3.eth.contract(token_address, abi=erc721_abi)
             try:
-                uri = token_contract.functions.tokenURI(int(p[1])).call()
+                uri = token_contract.functions.tokenURI(token_id).call()
             except:
                 continue
             print(uri)
